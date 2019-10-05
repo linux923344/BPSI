@@ -107,5 +107,3 @@ elsif  $mode == "idea-ofb"
   putsAllThingsWithIV
   
 end 
-
-server.close
