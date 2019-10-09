@@ -4,7 +4,7 @@
 # Server, ktory odbiera dane i odszyfrowuje wiadmosc
 #
 # Created: Marcin Wozniak
-# Last edit: 11-04-2019
+# Last edit: 09-10-2019
 #
 
 require 'openssl'

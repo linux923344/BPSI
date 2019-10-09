@@ -4,7 +4,7 @@
 # Klient wysyla jakiego szyfrowania uzywa, klucz, wiadomosc 
 #
 # Created: Marcin Wozniak
-# Last edit: 11-04-2019
+# Last edit: 09-10-2019
 #
 
 require 'openssl'
