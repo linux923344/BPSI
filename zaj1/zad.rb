@@ -9,6 +9,8 @@
 
 require 'openssl'
 require 'socket'
+require 'securerandom'
+require 'base64'
 
 def putsAllThingsWithIV
   puts "Encrypt: " + $mode 
@@ -60,27 +62,27 @@ end
 if $mode == "des-ecb"
   c = OpenSSL::Cipher.new('des-ecb')
   c.encrypt
-  $key = c.random_key
+  $key = c.key = SecureRandom.random_bytes(8) 
   $encrypted = c.update($message) + c.final
-  
+
   sendDataIVOutWithIV
   putsAllThingsOutWithIV
 
 elsif $mode == "3des-cbc"
   c = OpenSSL::Cipher.new('DES-EDE3-CBC')
   c.encrypt
-  $iv = c.random_iv
-  $key = c.random_key
+  $iv = c.iv = SecureRandom.random_bytes(8)
+  $key = c.key = SecureRandom.random_bytes(24) 
   $encrypted = c.update($message) + c.final
 
   sendDataIVWithIV
   putsAllThingsWithIV 
 
 elsif  $mode == "aes-cbc-192"
-  c = OpenSSL::Cipher::AES.new(128, 'CBC')
+  c = OpenSSL::Cipher::AES.new(192, 'CBC')
   c.encrypt 
-  $iv = c.random_iv
-  $key = c.random_key
+  $iv = c.iv = SecureRandom.random_bytes(16) 
+  $key = c.key = SecureRandom.random_bytes(24)
   $encrypted = c.update($message) + c.final
    
   sendDataIVWithIV
@@ -89,18 +91,16 @@ elsif  $mode == "aes-cbc-192"
 elsif  $mode == "rc5-ecb"
   c = OpenSSL::Cipher.new('RC5-ECB')
   c.encrypt 
-  $iv = c.random_iv
-  $key = c.random_key
+  $key = c.key = SecureRandom.random_bytes(16)
   $encrypted = c.update($message) + c.final
-   
-  sendDataIVWithIV
-  putsAllThingsWithIV
 
+  sendDataIVOutWithIV
+  putsAllThingsOutWithIV
 elsif  $mode == "idea-ofb"
   c = OpenSSL::Cipher.new('idea-ofb')
   c.encrypt 
-  $iv = c.random_iv
-  $key = c.random_key
+  $iv = c.iv = SecureRandom.random_bytes(8)
+  $key = c.key = SecureRandom.random_bytes(16)
   $encrypted = c.update($message) + c.final
    
   sendDataIVWithIV
