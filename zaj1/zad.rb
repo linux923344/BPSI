@@ -32,17 +32,17 @@ end
 def sendDataIVOutWithIV
   sock = TCPSocket.new('localhost', 3000)
   sock.puts $mode
-  sock.puts $key
-  sock.puts $encrypted
+  sock.puts $key.unpack("B*")
+  sock.puts $encrypted.unpack("B*")
   sock.close
 end 
 
 def sendDataIVWithIV
   sock = TCPSocket.new('localhost', 3000)
   sock.puts $mode 
-  sock.puts $iv 
-  sock.puts $key
-  sock.puts $encrypted
+  sock.puts $iv.unpack("B*")
+  sock.puts $key.unpack("B*")
+  sock.puts $encrypted.unpack("B*")
   sock.close
 end 
 

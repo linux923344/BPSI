@@ -39,8 +39,8 @@ while true
   $mode = client.gets.gsub(/\n$/, '')
   
   if $mode == "des-ecb"
-    $key = client.gets
-    $message = client.gets
+    $key = [client.gets.gsub(/\n$/, '')].pack("B*")
+    $message = [client.gets.gsub(/\n$/, '')].pack("B*")
   
     d = OpenSSL::Cipher.new('des-ecb')
     d.decrypt
@@ -50,9 +50,9 @@ while true
     putsAllThingsOutWithIV
   
   elsif $mode == "3des-cbc" 
-    $iv = client.gets
-    $key = client.gets 
-    $message = client.gets
+    $iv = [client.gets.gsub(/\n$/, '')].pack("B*")
+    $key = [client.gets.gsub(/\n$/, '')].pack("B*")
+    $message = [client.gets.gsub(/\n$/, '')].pack("B*")
   
     d = OpenSSL::Cipher.new('DES-EDE3-CBC')
     d.decrypt
@@ -63,9 +63,9 @@ while true
     putsAllThingsWithIV
     
   elsif $mode == "aes-cbc-192" 
-    $iv = client.gets
-    $key = client.gets 
-    $message = client.gets
+    $iv = [client.gets.gsub(/\n$/, '')].pack("B*")  
+    $key = [client.gets.gsub(/\n$/, '')].pack("B*")
+    $message = [client.gets.gsub(/\n$/, '')].pack("B*")
   
     d = OpenSSL::Cipher::AES.new(192, 'CBC')
     d.decrypt
@@ -76,8 +76,8 @@ while true
     putsAllThingsWithIV
   
   elsif $mode == "rc5-ecb" 
-    $key = client.gets 
-    $message = client.gets
+    $key = [client.gets.gsub(/\n$/, '')].pack("B*") 
+    $message = [client.gets.gsub(/\n$/, '')].pack("B*")
   
     d = OpenSSL::Cipher.new('RC5-ECB')
     d.decrypt
@@ -87,9 +87,9 @@ while true
     putsAllThingsOutWithIV
     
   elsif $mode == "idea-ofb" 
-    $iv = client.gets
-    $key = client.gets 
-    $message = client.gets
+    $iv = [client.gets.gsub(/\n$/, '')].pack("B*")
+    $key = [client.gets.gsub(/\n$/, '')].pack("B*") 
+    $message = [client.gets.gsub(/\n$/, '')].pack("B*")
   
     d = OpenSSL::Cipher.new('idea-ofb')
     d.decrypt
