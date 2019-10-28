@@ -33,7 +33,7 @@ end
 $randomnumber1 = rand 1..100000000
 $randomnumber2 = rand 1..100000000
 
-sock = TCPSocket.new('localhost', 3000)
+sock = TCPSocket.new('150.254.79.126', 3000)
 puts sock.gets 
 $mode = gets
 puts sock.gets
