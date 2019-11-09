@@ -8,7 +8,7 @@ require 'securerandom'
 
 message = File.read("message.txt")
 
-dh1=OpenSSL::PKey::DH.new(512)
+dh1=OpenSSL::PKey::DH.new(2048)
 dh1.generate_key!
 der = dh1.public_key.to_der
 

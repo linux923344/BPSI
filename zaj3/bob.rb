@@ -5,7 +5,7 @@ require 'openssl'
 require 'socket'
 require 'securerandom'
 
-sock = TCPServer.new 5632
+sock = TCPServer.new 3000 
 client = sock.accept
 
 client.puts "Choose: des-ecb, des-ede3-cbc, aes-cbc-192, rc5-ecb, idea-ofb"
